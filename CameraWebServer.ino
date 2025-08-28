@@ -12,6 +12,8 @@ const char *password = "olapodeusar155";
 
 // Servidor de destino
 const char *serverName = "http://192.168.0.17:5000/upload";  // <- Troque pela sua URL
+// Render
+// const char *serverName = "https://sensor-nivel-liquido-backend.onrender.com/upload";
 
 void setup() {
   Serial.begin(115200);
@@ -101,6 +103,9 @@ void sendPhoto() {
   if (WiFi.status() == WL_CONNECTED) {
     HTTPClient http;
     http.begin(serverName);
+    // Render
+    // HTTPClient http;
+    // http.begin(serverName, "");  // ignora validação SSL
     http.addHeader("Content-Type", "image/jpeg");
 
     int httpResponseCode = http.POST(fb->buf, fb->len);
